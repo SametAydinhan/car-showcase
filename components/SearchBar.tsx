@@ -17,6 +17,7 @@ const SearchButton = ({ otherClasses }: { otherClasses: string }) => (
 );
 
 const SearchBar = () => {
+  const router = useRouter();
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (manufacturer === "" && model === "") {
@@ -26,7 +27,7 @@ const SearchBar = () => {
   };
   const updateSearchParams = (model: string, manufacturer: string) => {
     const searchParams = new URLSearchParams(window.location.search);
-    const Router = useRouter();
+    
     if (model) {
       searchParams.set("model", model);
     } else {
@@ -43,7 +44,7 @@ const SearchBar = () => {
       window.location.pathname
     }?${searchParams.toString()}`;
 
-    Router.push(newPathname);
+    router.push(newPathname);
   };
 
   const [manufacturer, setManufacturer] = useState("");
