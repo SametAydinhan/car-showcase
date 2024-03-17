@@ -2,7 +2,7 @@ import { manufacturers } from "@/constants";
 import { CarProps, FilterProps } from "@/types";
 
 export async function fetchCars(filters: FilterPropserProps) {
-  const {manufacturer,year,model,limit,fuel} = filters
+  const { manufacturer, year, model, limit, fuel } = filters;
   const headers = {
     "X-RapidAPI-Key": "fde14106a3msh880ac6fa4eaa0e1p1f561fjsn7a1bd8f481ce",
     "X-RapidAPI-Host": "cars-by-api-ninjas.p.rapidapi.com",
@@ -42,4 +42,13 @@ export const generateCarImageUrl = (car: CarProps, angle?: string) => {
   }
 
   return `${url}`;
+};
+
+export const updateSearchParams = (type: string, value: string) => {
+  const searchParams = new URLSearchParams(window.location.search);
+
+  searchParams.set(type, value);
+
+  const newPathname = `${window.location.pathname}?${searchParams.toString()}`;
+  return newPathname;
 };
